@@ -25,7 +25,7 @@ export class ExpLinksAdapter {
   /**
    * Execute an API request through ExpLinks Gateway
    */
-  async executeRequest<T = any>(request: ApiRequest): Promise<ApiResponse<T>> {
+  async executeRequest<T = unknown>(request: ApiRequest): Promise<ApiResponse<T>> {
     try {
       const response = await this.client.request({
         method: request.method,

@@ -11,11 +11,11 @@ export interface ExpLinksConfig {
 export interface ApiRequest {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
   endpoint: string;
-  data?: any;
+  data?: unknown;
   headers?: Record<string, string>;
 }
 
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   success: boolean;
   data?: T;
   error?: string;

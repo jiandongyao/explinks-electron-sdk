@@ -41,10 +41,11 @@ export class AppStore {
       if (connected) {
         await this.loadAvailableApis();
       }
-    } catch (error: any) {
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Initialization failed';
       this.updateState({ 
         connected: false, 
-        lastError: error.message || 'Initialization failed' 
+        lastError: message
       });
     }
   }
@@ -52,7 +53,7 @@ export class AppStore {
   /**
    * Execute API request
    */
-  async executeRequest<T = any>(request: ApiRequest): Promise<ApiResponse<T>> {
+  async executeRequest<T = unknown>(request: ApiRequest): Promise<ApiResponse<T>> {
     if (!this.adapter) {
       return {
         success: false,

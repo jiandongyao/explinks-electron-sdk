@@ -46,8 +46,9 @@ initBtn.addEventListener('click', async () => {
     } else {
       showStatus('SDK initialized but connection failed', 'warning');
     }
-  } catch (error: any) {
-    showStatus(`Initialization failed: ${error.message}`, 'error');
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Initialization failed';
+    showStatus(`Initialization failed: ${message}`, 'error');
   } finally {
     initBtn.disabled = false;
     initBtn.textContent = 'Initialize SDK';
@@ -67,8 +68,9 @@ testBtn.addEventListener('click', async () => {
     } else {
       showStatus('Connection failed', 'error');
     }
-  } catch (error: any) {
-    showStatus(`Test failed: ${error.message}`, 'error');
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Test failed';
+    showStatus(`Test failed: ${message}`, 'error');
   } finally {
     testBtn.disabled = false;
     testBtn.textContent = 'Test Connection';
@@ -95,7 +97,7 @@ executeBtn.addEventListener('click', async () => {
   }
 
   const request = {
-    method: methodSelect.value as any,
+    method: methodSelect.value as 'GET' | 'POST' | 'PUT' | 'DELETE',
     endpoint: endpoint,
     data: requestData
   };
@@ -106,8 +108,9 @@ executeBtn.addEventListener('click', async () => {
     
     const response = await window.expLinksAPI.executeRequest(request);
     showResponse(response, response.success ? 'success' : 'error');
-  } catch (error: any) {
-    showResponse({ success: false, error: error.message }, 'error');
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    showResponse({ success: false, error: message }, 'error');
   } finally {
     executeBtn.disabled = false;
     executeBtn.textContent = 'Execute Request';
@@ -128,8 +131,9 @@ loadApisBtn.addEventListener('click', async () => {
     } else {
       apiList.innerHTML = '<p class="placeholder">No APIs available or connection not established</p>';
     }
-  } catch (error: any) {
-    apiList.innerHTML = `<p class="error">Failed to load APIs: ${error.message}</p>`;
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Failed to load APIs';
+    apiList.innerHTML = `<p class="error">Failed to load APIs: ${message}</p>`;
   } finally {
     loadApisBtn.disabled = false;
     loadApisBtn.textContent = 'Load Available APIs';
