@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'">
+  <title>ExpLinks SDK Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>ExpLinks SDK Demo</h1>
+      <p class="subtitle">Access thousands of cloud APIs from your desktop application</p>
+    </header>
+
+    <main>
+      <!-- Configuration Section -->
+      <section class="card">
+        <h2>Configuration</h2>
+        <div class="form-group">
+          <label for="gatewayUrl">Gateway URL:</label>
+          <input 
+            type="text" 
+            id="gatewayUrl" 
+            value="https://api.explinks.com" 
+            placeholder="https://api.explinks.com"
+          />
+        </div>
+        <div class="form-group">
+          <label for="apiKey">API Key (optional):</label>
+          <input 
+            type="password" 
+            id="apiKey" 
+            placeholder="Enter your API key"
+          />
+        </div>
+        <button id="initBtn" class="btn btn-primary">Initialize SDK</button>
+        <button id="testBtn" class="btn btn-secondary">Test Connection</button>
+        <div id="connectionStatus" class="status"></div>
+      </section>
+
+      <!-- Request Section -->
+      <section class="card">
+        <h2>Make API Request</h2>
+        <div class="form-group">
+          <label for="method">Method:</label>
+          <select id="method">
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="endpoint">Endpoint:</label>
+          <input 
+            type="text" 
+            id="endpoint" 
+            placeholder="/api/example"
+          />
+        </div>
+        <div class="form-group">
+          <label for="requestData">Request Data (JSON):</label>
+          <textarea 
+            id="requestData" 
+            rows="4" 
+            placeholder='{"key": "value"}'
+          ></textarea>
+        </div>
+        <button id="executeBtn" class="btn btn-primary">Execute Request</button>
+      </section>
+
+      <!-- Response Section -->
+      <section class="card">
+        <h2>Response</h2>
+        <div id="response" class="response-box">
+          <p class="placeholder">Response will appear here...</p>
+        </div>
+      </section>
+
+      <!-- Available APIs Section -->
+      <section class="card">
+        <h2>Available APIs</h2>
+        <button id="loadApisBtn" class="btn btn-secondary">Load Available APIs</button>
+        <div id="apiList" class="api-list">
+          <p class="placeholder">Click "Load Available APIs" to see available services</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>ExpLinks SDK v1.0.0 | <a href="https://www.explinks.com" target="_blank">Visit ExpLinks.com</a></p>
+    </footer>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
