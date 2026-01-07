@@ -3,19 +3,7 @@
  * UI Logic and Event Handlers
  */
 
-// TypeScript declaration for our exposed API
-declare global {
-  interface Window {
-    expLinksAPI: {
-      initialize: (config: any) => Promise<void>;
-      executeRequest: (request: any) => Promise<any>;
-      testConnection: () => Promise<boolean>;
-      loadAvailableApis: () => Promise<void>;
-      getState: () => Promise<any>;
-      onStateChange: (callback: (state: any) => void) => void;
-    };
-  }
-}
+import './types';
 
 // DOM Elements
 const initBtn = document.getElementById('initBtn') as HTMLButtonElement;

@@ -5,8 +5,9 @@
   "main": "dist/main.js",
   "scripts": {
     "start": "npm run build && electron .",
-    "build": "tsc",
-    "dev": "tsc && electron .",
+    "build": "tsc && npm run copy-assets",
+    "copy-assets": "cp src/renderer/index.html dist/renderer/ && cp src/renderer/styles.css dist/renderer/",
+    "dev": "npm run build && electron .",
     "clean": "rm -rf dist"
   },
   "keywords": [
